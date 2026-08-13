@@ -7,3 +7,4 @@ __pycache__/
 # Ignore original prospectus and output files to prevent leaking PII
 *Red Herring Prospectus.docx
 output/*.docx
+!output/sample_document_redacted.docx
