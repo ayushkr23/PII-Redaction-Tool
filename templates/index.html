@@ -292,7 +292,7 @@
       screenLoading.classList.remove('hidden');
 
       // Loading text animation
-      const loadingTexts = ["Extracting text blocks", "Running Presidio NER", "Regex matching", "Faker substitution", "Recompiling DOCX"];
+      const loadingTexts = ["Extracting text blocks", "Running Presidio NER", "Regex matching", "Faker substitution", "Recompiling DOCX", "Neural scanning"];
       let idx = 0;
       const loaderInterval = setInterval(() => {
         idx = (idx + 1) % loadingTexts.length;
@@ -303,33 +303,58 @@
       formData.append('file', currentFile);
 
       try {
+        // Step 1: Submit file and get task_id
         const res = await fetch('/redact', {
           method: 'POST',
           body: formData
         });
         
-        const data = await res.json();
-        clearInterval(loaderInterval);
+        const initData = await res.json();
         
-        if (data.error) throw new Error(data.error);
+        if (initData.error) throw new Error(initData.error);
+        if (!initData.task_id) throw new Error("No task ID returned");
 
-        // Parse response
-        outFilename = data.filename;
-        const b64Data = data.file_data;
-        const byteCharacters = atob(b64Data);
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-        const byteArray = new Uint8Array(byteNumbers);
-        redactedBlob = new Blob([byteArray], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+        const taskId = initData.task_id;
 
-        // Render stats
-        document.getElementById('res-filename').innerText = data.original_filename;
-        renderStats(data.stats);
+        // Step 2: Poll for completion
+        const checkStatus = async () => {
+            const statusRes = await fetch(`/status/${taskId}`);
+            const statusData = await statusRes.json();
+            
+            if (statusData.error) throw new Error(statusData.error);
+            
+            if (statusData.status === 'error') {
+                throw new Error(statusData.error);
+            } else if (statusData.status === 'completed') {
+                // Done!
+                clearInterval(loaderInterval);
+                const data = statusData.data;
+                
+                // Parse response
+                outFilename = data.filename;
+                const b64Data = data.file_data;
+                const byteCharacters = atob(b64Data);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                redactedBlob = new Blob([byteArray], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
 
-        screenLoading.classList.add('hidden');
-        screenResults.style.display = 'block';
+                // Render stats
+                document.getElementById('res-filename').innerText = data.original_filename;
+                renderStats(data.stats);
+
+                screenLoading.classList.add('hidden');
+                screenResults.style.display = 'block';
+            } else {
+                // Still processing, check again in 2 seconds
+                setTimeout(checkStatus, 2000);
+            }
+        };
+        
+        // Start polling
+        setTimeout(checkStatus, 2000);
 
       } catch (err) {
         clearInterval(loaderInterval);
