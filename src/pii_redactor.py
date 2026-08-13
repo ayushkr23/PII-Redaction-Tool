@@ -4,10 +4,13 @@ from docx import Document
 from detectors import PIIDetector
 from replacer import PIIReplacer
 
+from collections import Counter
+
 class PIIRedactor:
     def __init__(self):
         self.detector = PIIDetector()
         self.replacer = PIIReplacer()
+        self.stats = Counter()
 
     def redact_text(self, text: str) -> str:
         """
@@ -19,6 +22,10 @@ class PIIRedactor:
         entities = self.detector.detect(text)
         if not entities:
             return text
+            
+        # Update stats
+        for entity in entities:
+            self.stats[entity['entity_type']] += 1
             
         # Replace from end to start to avoid index shifting
         redacted_text = text
