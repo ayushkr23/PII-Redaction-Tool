@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PII Shield - Terminal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
+
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .terminal-window {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    /* Top icon */
+    .terminal-window::before {
+      content: '⧉';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #888;
+      font-size: 1.2rem;
+    }
+
+    .ascii-border {
+      border-left: 1px dashed #555;
+      border-right: 1px dashed #555;
+      padding: 0 15px;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #555;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      color: #fff;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .title { font-weight: bold; }
+    .subtitle { color: #aaa; font-size: 0.9em; margin-top: 5px;}
+
+    .main-text {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .highlight { color: #fbc02d; font-weight: 500; }
+
+    /* Drop Zone */
+    .drop-zone {
+      border: 1px dashed #555;
+      border-radius: 4px;
+      padding: 40px 20px;
+      text-align: center;
+      margin: 0 auto 30px;
+      width: 80%;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.2s;
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .drop-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .drop-icon { font-size: 1.2rem; margin-bottom: 15px; display: block; color: #888;}
+    
+    .btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+    .btn:hover { color: #fbc02d; }
+    .btn:disabled { color: #555; cursor: not-allowed; }
+
+    .footer {
+      border-top: 1px dashed #555;
+      border-bottom: 1px dashed #555;
+      padding: 15px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 0.85em;
+      color: #aaa;
+    }
+
+    /* Screen 2: Results */
+    #results-screen { display: none; }
+    
+    .success-text { color: #fff; font-weight: bold; }
+    
+    .doc-info { margin-bottom: 25px; }
+    .doc-label { color: #aaa; margin-bottom: 5px; font-size: 0.9em;}
+    
+    /* Stats Grid */
+    .stats-grid {
+      display: flex;
+      border: 1px dashed #555;
+      margin-bottom: 30px;
+    }
+    .stat-box {
+      flex: 1;
+      text-align: center;
+      padding: 15px 0;
+      border-right: 1px dashed #555;
+    }
+    .stat-box:last-child { border-right: none; }
+    .stat-value { font-weight: bold; font-size: 1.1em; margin-bottom: 5px;}
+    .stat-label { color: #aaa; font-size: 0.8em; }
+
+    /* Progress Bars */
+    .progress-section { margin-bottom: 30px; }
+    .progress-title { border-bottom: 1px dashed #555; padding-bottom: 10px; margin-bottom: 15px;}
+    
+    .progress-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+    }
+    .progress-label { width: 120px; }
+    .progress-bar-container {
+      flex-grow: 1;
+      height: 12px;
+      background-color: #2a2a2a;
+      margin: 0 15px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background-color: #fff;
+    }
+    .progress-count { width: 30px; text-align: right; }
+
+    /* Blinking cursor */
+    .cursor::after {
+      content: '█';
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <div class="terminal-window">
+    <div class="ascii-border">
+      
+      <!-- SCREEN 1: UPLOAD -->
+      <div id="upload-screen">
+        <div class="header-row">
+          <div>
+            <div class="title">PII Shield</div>
+            <div class="subtitle">Secure Document Redaction</div>
+          </div>
+          <div>
+            <span class="status-dot">●</span> System Ready
+          </div>
+        </div>
+
+        <div class="main-text highlight">Protect Sensitive Data</div>
+        <div class="main-text">Detect and replace PII in your DOCX documents</div>
+
+        <form id="upload-form">
+          <div class="drop-zone" id="drop-zone">
+            <span class="drop-icon">📄</span>
+            <div id="drop-text">Drop your DOCX file here</div>
+            <br>
+            <div style="color: #aaa; font-size: 0.9em;">or Browse Files</div>
+            <input type="file" id="file-input" accept=".docx" required />
+          </div>
+
+          <button type="submit" class="btn" id="submit-btn" disabled>
+            [ Redact Document ]
+          </button>
+        </form>
+
+        <div class="footer">
+          <div>✓ 9 PII Categories</div>
+          <div>✓ Consistent Replacement</div>
+          <div>✓ DOCX Preservation</div>
+          <div>✓ Detection Metrics</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: RESULTS -->
+      <div id="results-screen">
+        <div class="header-row">
+          <div class="title">Redaction Complete</div>
+          <div class="success-text">✓ Success</div>
+        </div>
+
+        <div class="doc-info">
+          <div class="doc-label">Document</div>
+          <div id="res-filename" class="title">Red Herring Prospectus.docx</div>
+        </div>
+
+        <div class="stats-grid" id="top-stats">
+          <!-- Populated via JS -->
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-title">Detection Summary</div>
+          <div id="progress-bars">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <button class="btn" id="download-btn">
+          [ Download Redacted DOCX ]
+        </button>
+      </div>
+      
+      <!-- SCREEN 3: LOADING -->
+      <div id="loading-screen" class="hidden">
+        <div class="header-row">
+          <div>
+            <div class="title">PII Shield</div>
+          </div>
+          <div>
+            <span class="status-dot" style="color: #fbc02d;">●</span> Processing
+          </div>
+        </div>
+        <div class="main-text" style="margin: 60px 0;">
+          Initializing neural scanners...<br><br>
+          <span class="cursor" id="loading-text">Extracting text blocks</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const dropText = document.getElementById('drop-text');
+    const submitBtn = document.getElementById('submit-btn');
+    const form = document.getElementById('upload-form');
+    
+    const screenUpload = document.getElementById('upload-screen');
+    const screenLoading = document.getElementById('loading-screen');
+    const screenResults = document.getElementById('results-screen');
+    
+    let currentFile = null;
+    let redactedBlob = null;
+    let outFilename = 'redacted.docx';
+
+    // File selection
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        currentFile = e.target.files[0];
+        dropText.innerHTML = `<span style="color:#fbc02d">${currentFile.name}</span>`;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Form submit
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentFile) return;
+
+      screenUpload.classList.add('hidden');
+      screenLoading.classList.remove('hidden');
+
+      // Loading text animation
+      const loadingTexts = ["Extracting text blocks", "Running Presidio NER", "Regex matching", "Faker substitution", "Recompiling DOCX"];
+      let idx = 0;
+      const loaderInterval = setInterval(() => {
+        idx = (idx + 1) % loadingTexts.length;
+        document.getElementById('loading-text').innerText = loadingTexts[idx] + "... ";
+      }, 1500);
+
+      const formData = new FormData();
+      formData.append('file', currentFile);
+
+      try {
+        const res = await fetch('/redact', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await res.json();
+        clearInterval(loaderInterval);
+        
+        if (data.error) throw new Error(data.error);
+
+        // Parse response
+        outFilename = data.filename;
+        const b64Data = data.file_data;
+        const byteCharacters = atob(b64Data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        redactedBlob = new Blob([byteArray], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+
+        // Render stats
+        document.getElementById('res-filename').innerText = data.original_filename;
+        renderStats(data.stats);
+
+        screenLoading.classList.add('hidden');
+        screenResults.style.display = 'block';
+
+      } catch (err) {
+        clearInterval(loaderInterval);
+        alert("Error: " + err.message);
+        screenLoading.classList.add('hidden');
+        screenUpload.classList.remove('hidden');
+      }
+    });
+
+    // Download button
+    document.getElementById('download-btn').addEventListener('click', () => {
+      if (!redactedBlob) return;
+      const url = URL.createObjectURL(redactedBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = outFilename;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    function renderStats(statsObj) {
+      const topStats = document.getElementById('top-stats');
+      const progressBars = document.getElementById('progress-bars');
+      
+      topStats.innerHTML = '';
+      progressBars.innerHTML = '';
+      
+      const entries = Object.entries(statsObj).sort((a, b) => b[1] - a[1]);
+      if (entries.length === 0) {
+        topStats.innerHTML = '<div class="stat-box">No PII Found</div>';
+        return;
+      }
+
+      // Max value for progress bars
+      const maxVal = Math.max(...entries.map(e => e[1]));
+
+      // Top 4 for the grid
+      const top4 = entries.slice(0, 4);
+      top4.forEach(([key, val]) => {
+        topStats.innerHTML += `
+          <div class="stat-box">
+            <div class="stat-value">${val}</div>
+            <div class="stat-label">${key}</div>
+          </div>
+        `;
+      });
+
+      // Progress bars
+      entries.forEach(([key, val]) => {
+        const pct = (val / maxVal) * 100;
+        progressBars.innerHTML += `
+          <div class="progress-row">
+            <div class="progress-label">${key}</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" style="width: ${pct}%"></div>
+            </div>
+            <div class="progress-count">${val}</div>
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
