@@ -3,12 +3,12 @@ from typing import List, Dict, Any, Tuple
 import spacy
 
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm", disable=["parser", "senter", "attribute_ruler", "lemmatizer"])
 except OSError:
     # If not loaded, download and load
     import spacy.cli
     spacy.cli.download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm", disable=["parser", "senter", "attribute_ruler", "lemmatizer"])
 
 from presidio_analyzer import AnalyzerEngine, PatternRecognizer, Pattern, RecognizerResult, EntityRecognizer
 from presidio_analyzer.nlp_engine import NlpEngineProvider
