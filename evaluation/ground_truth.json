@@ -1,0 +1,293 @@
+[
+    {
+        "text": "REGISTERED OFFICE",
+        "entities": []
+    },
+    {
+        "text": "CORPORATE OFFICE",
+        "entities": []
+    },
+    {
+        "text": "CONTACT PERSON",
+        "entities": []
+    },
+    {
+        "text": "E-MAIL AND TELEPHONE",
+        "entities": []
+    },
+    {
+        "text": "11/3, 11/4 and 11/5 Village Birdewadi Chakan Taluka - Khed Pune \u2013 410 501\nMaharashtra, India",
+        "entities": [
+            {
+                "entity_type": "ADDRESS",
+                "start": 0,
+                "end": 92,
+                "text": "11/3, 11/4 and 11/5 Village Birdewadi Chakan Taluka - Khed Pune \u2013 410 501\nMaharashtra, India"
+            }
+        ]
+    },
+    {
+        "text": "201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner Pune \u2013 411 045\nMaharashtra, India",
+        "entities": [
+            {
+                "entity_type": "ADDRESS",
+                "start": 0,
+                "end": 97,
+                "text": "201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner Pune \u2013 411 045\nMaharashtra, India"
+            }
+        ]
+    },
+    {
+        "text": "Sarthak Malvadkar Company Secretary and Compliance Officer",
+        "entities": [
+            {
+                "entity_type": "PERSON",
+                "start": 0,
+                "end": 17,
+                "text": "Sarthak Malvadkar"
+            }
+        ]
+    },
+    {
+        "text": "Email: cs.connect@kshinternational.com Telephone: + 91 20 45053237",
+        "entities": [
+            {
+                "entity_type": "EMAIL_ADDRESS",
+                "start": 7,
+                "end": 38,
+                "text": "cs.connect@kshinternational.com"
+            },
+            {
+                "entity_type": "PHONE_NUMBER",
+                "start": 50,
+                "end": 66,
+                "text": "+ 91 20 45053237"
+            }
+        ]
+    },
+    {
+        "text": "www.kshinternational. com",
+        "entities": []
+    },
+    {
+        "text": "OUR PROMOTERS: KUSHAL SUBBAYYA HEGDE, PUSHPA KUSHAL HEGDE, RAJESH KUSHAL HEGDE, ROHIT KUSHAL HEGDE, RAKHI GIRIJA SHETTY, DHAULAGIRI FAMILY TRUST, EVEREST FAMILY TRUST, MAKALU FAMILY TRUST, BROAD FAMILY TRUST, ANNAPURNA FAMILY TRUST, KANCHENJUNGA FAMILY TRUST AND\nWATERLOO INDUSTRIAL PARK VI PRIVATE LIMITED",
+        "entities": [
+            {
+                "entity_type": "PERSON",
+                "start": 15,
+                "end": 36,
+                "text": "KUSHAL SUBBAYYA HEGDE"
+            },
+            {
+                "entity_type": "PERSON",
+                "start": 38,
+                "end": 57,
+                "text": "PUSHPA KUSHAL HEGDE"
+            },
+            {
+                "entity_type": "PERSON",
+                "start": 59,
+                "end": 78,
+                "text": "RAJESH KUSHAL HEGDE"
+            },
+            {
+                "entity_type": "PERSON",
+                "start": 80,
+                "end": 98,
+                "text": "ROHIT KUSHAL HEGDE"
+            },
+            {
+                "entity_type": "PERSON",
+                "start": 100,
+                "end": 119,
+                "text": "RAKHI GIRIJA SHETTY"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 121,
+                "end": 144,
+                "text": "DHAULAGIRI FAMILY TRUST"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 146,
+                "end": 166,
+                "text": "EVEREST FAMILY TRUST"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 168,
+                "end": 187,
+                "text": "MAKALU FAMILY TRUST"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 189,
+                "end": 207,
+                "text": "BROAD FAMILY TRUST"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 209,
+                "end": 231,
+                "text": "ANNAPURNA FAMILY TRUST"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 233,
+                "end": 258,
+                "text": "KANCHENJUNGA FAMILY TRUST"
+            },
+            {
+                "entity_type": "ORGANIZATION",
+                "start": 263,
+                "end": 306,
+                "text": "WATERLOO INDUSTRIAL PARK VI PRIVATE LIMITED"
+            }
+        ]
+    },
+    {
+        "text": "DETAILS OF THE OFFER TO PUBLIC",
+        "entities": []
+    },
+    {
+        "text": "SIZE OF THE FRESH ISSUE",
+        "entities": []
+    },
+    {
+        "text": "SIZE\tOF\tTHE OFFER FOR SALE",
+        "entities": []
+    },
+    {
+        "text": "TOTAL OFFER SIZE",
+        "entities": []
+    },
+    {
+        "text": "ELIGIBILITY\tAND\tSHARE\nRESERVATION AMONG QIBs, NIIs AND RIIs",
+        "entities": []
+    },
+    {
+        "text": "Corporate Identity Number: U28129PN1979PLC141032",
+        "entities": []
+    },
+    {
+        "text": "(2) The UPI mandate end time and date shall be at 5:00 p.m. on Bid/Offer Closing Day.",
+        "entities": []
+    },
+    {
+        "text": "The restated financial information of our Company comprising the restated statements of assets and liabilities as on and for the three months period ended June 30, 2025 and for the years ended March 31, 2025, March 31, 2024 and March 31, 2023, the restated statements of profit and loss (including other comprehensive income), the restated statements of cash flow, the restated statements of changes in equity, the summary of material accounting policies and other explanatory information and other financial information, including the annexures, notes and schedules thereto, for the three-months period ended June 30, 2025, and for the years ended March 31, 2025, March 31, 2024 and March 31, 2023 Fiscals 2025, 2024 and 2023, prepared in terms of the requirements of Section 26 of Part I of Chapter III of the Companies Act, SEBI ICDR Regulations, the Guidance Note on Reports in Company Prospectuses (Revised 2019) issued by ICAI, as amended from time to time and the Indian Accounting Standards as specified under Section 133 of the Act and other accounting principles generally accepted in India.",
+        "entities": []
+    },
+    {
+        "text": "Unless stated otherwise, industry and market data used in this Red Herring Prospectus has been obtained or derived from the report titled \u201cIndustry Research Report on Magnet Winding Wires Market in India\u201d dated November 26, 2025 (\u201cCARE Report\u201d), prepared by CARE Analytics and Advisory Private Limited (\u201cCareEdge Research\u201d), which has been prepared exclusively for the purpose of understanding the industry in connection with the Offer and commissioned and paid for by our Company, pursuant to the engagement letter dated December 2, 2024. The CARE Report is available on the website of our Company at the following weblink: https://kshinternational.com/investor-relations/industry-report/. Further, CareEdge Research, pursuant to their consent letter dated November 26, 2025 (\u201cLetter\u201d) has accorded their no objection and consent to use the CARE Report. CareEdge Research, pursuant to their Letter, has also confirmed that it is an independent agency and has no conflict of interest issuing the CARE Report, and confirmed that it is not related, either directly or indirectly, to our Company, our Directors, our Promoters (including the Promoter Selling Shareholders), our Key Managerial Personnel, our Senior Management, our Group Companies or the Book Running Lead Managers.",
+        "entities": []
+    },
+    {
+        "text": "Reliance on our key suppliers;",
+        "entities": []
+    },
+    {
+        "text": "Further, as on the date of this Red Herring Prospectus, there are no outstanding litigation involving our Group Companies which may have a material impact on our Company.",
+        "entities": []
+    },
+    {
+        "text": "For further details, see \u201cRestated Financial Statements \u2013 Note 31: Related Party Transaction\u201d on page 331.",
+        "entities": []
+    },
+    {
+        "text": "Considering the nature of raw materials involved in our business, there can be no assurance that other environmental and safety allegations will not be made against us in the future. The relevant regulator may order closure of our unit where it is found to be non-compliant with the applicable norm. In some instances, such a fine or sanction could adversely affect our business, reputation, financial condition, results of operations or cash flows. In addition, these requirements may become more stringent over time and there can be no assurance that we will not incur significant environmental costs or liabilities in the future. For details, see \u201cRisk Factors \u2013 Our insurance coverage may not be sufficient or adequate to protect us against all material hazards, which may adversely affect our business, results of operations, financial condition and cash flows\u201d on page 54.",
+        "entities": []
+    },
+    {
+        "text": "The loan facilities to be prepaid or repaid will be selected based on a range of various factors, including (i) any conditions attached to the loan facilities restricting our ability to repay or prepay the loan facilities and time taken to fulfil such requirements, (ii) levy of any prepayment penalties and the quantum thereof, (iii) receipt of consents for prepayment, (iv) provisions of any laws, rules and regulations governing such loan facilities, and (v) other commercial considerations including, among others, the amount of the loan outstanding and the remaining tenor of the loan.",
+        "entities": []
+    },
+    {
+        "text": "801-804, Wing A, Building No. 3 Inspire BKC G Block, Bandra Kurla Complex",
+        "entities": [
+            {
+                "entity_type": "ADDRESS",
+                "start": 0,
+                "end": 73,
+                "text": "801-804, Wing A, Building No. 3 Inspire BKC G Block, Bandra Kurla Complex"
+            }
+        ]
+    },
+    {
+        "text": "Contact person: Lokesh Shah/ Soumavo Sarkar",
+        "entities": [
+            {
+                "entity_type": "PERSON",
+                "start": 16,
+                "end": 27,
+                "text": "Lokesh Shah"
+            },
+            {
+                "entity_type": "PERSON",
+                "start": 29,
+                "end": 43,
+                "text": "Soumavo Sarkar"
+            }
+        ]
+    },
+    {
+        "text": "SEBI registration no.: INM000013004",
+        "entities": []
+    },
+    {
+        "text": "5th Floor, Marathon IT Park Bund Garden Road",
+        "entities": [
+            {
+                "entity_type": "ADDRESS",
+                "start": 0,
+                "end": 44,
+                "text": "5th Floor, Marathon IT Park Bund Garden Road"
+            }
+        ]
+    },
+    {
+        "text": "My name is John Smith and my SSN is 123-45-6789. I live at 192.168.1.10.",
+        "entities": [
+            {
+                "entity_type": "PERSON",
+                "start": 11,
+                "end": 21,
+                "text": "John Smith"
+            },
+            {
+                "entity_type": "US_SSN",
+                "start": 36,
+                "end": 47,
+                "text": "123-45-6789"
+            },
+            {
+                "entity_type": "IP_ADDRESS",
+                "start": 59,
+                "end": 71,
+                "text": "192.168.1.10"
+            }
+        ]
+    },
+    {
+        "text": "Please charge my credit card 4111 1111 1111 1111 for the order.",
+        "entities": [
+            {
+                "entity_type": "CREDIT_CARD",
+                "start": 29,
+                "end": 48,
+                "text": "4111 1111 1111 1111"
+            }
+        ]
+    },
+    {
+        "text": "Date of Birth: 12/05/1999",
+        "entities": [
+            {
+                "entity_type": "DATE_OF_BIRTH",
+                "start": 15,
+                "end": 25,
+                "text": "12/05/1999"
+            }
+        ]
+    }
+]
