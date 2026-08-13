@@ -4,8 +4,8 @@
 The PII Redaction Tool reads a `.docx` file, detects 9 categories of Personally Identifiable Information (PII), and replaces them with consistent, realistic fake alternatives, preserving the structure of the document as much as possible.
 
 ## Input & Output
-- **Input:** The provided `input/Red Herring Prospectus.docx` which contains the text and tables to be redacted.
-- **Output:** The redacted version is saved as `output/redacted_output.docx`. All detected PII is substituted with fake equivalents (e.g. realistic names, fake company names, valid IP format, etc.).
+- **Input:** A safe dummy file `input/sample_document.docx` is provided for testing to prevent leaking real PII to version control.
+- **Output:** The redacted version is saved as `output/sample_document_redacted.docx`. All detected PII is substituted with fake equivalents (e.g. realistic names, fake company names, valid IP format, etc.).
 
 ## PII Categories Handled
 1. Full names (PERSON)
@@ -63,7 +63,7 @@ python -m spacy download en_core_web_sm
 ## Usage
 Run the redaction script from the project root:
 ```bash
-python src/pii_redactor.py --input "input/Red Herring Prospectus.docx" --output "output/redacted_output.docx"
+python src/pii_redactor.py --input "input/sample_document.docx" --output "output/sample_document_redacted.docx"
 ```
 
 ## Project Structure
