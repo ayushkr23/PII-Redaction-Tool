@@ -3,3 +3,7 @@ __pycache__/
 *.egg-info/
 .env
 *.log
+
+# Ignore original prospectus and output files to prevent leaking PII
+*Red Herring Prospectus.docx
+output/*.docx
